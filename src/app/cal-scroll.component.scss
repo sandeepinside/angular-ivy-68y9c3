@@ -1,0 +1,55 @@
+/* calendar-scroll.component.scss */
+
+/* calendar-scroll.component.scss */
+
+
+.calendar-scroll {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .calendar-scroll-month-year {
+    text-align: center;
+  }
+
+  .calendar-scroll-bar {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    .calendar-scroll-arrow {
+      cursor: pointer;
+      padding: 0 10px;
+    }
+
+    .calendar-scroll-date {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      position: relative;
+      flex-grow: 1;
+      text-align: center;
+      cursor: pointer;
+
+      &:before {
+        content: attr(data-day);
+        position: absolute;
+        top: -15px;
+        left: 0;
+        right: 0;
+        text-align: center;
+      }
+    }
+  }
+
+  .calendar-scroll-current-date {
+    background-color: #ccc;
+    color: #fff;
+  }
+
+  .calendar-scroll-selected-date {
+    background-color: #333;
+    color: #fff;
+  }
+}

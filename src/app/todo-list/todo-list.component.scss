@@ -1,0 +1,91 @@
+
+.todo {
+  &__task-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__input-container {
+    position: relative;
+    width: 100%;
+
+    &__input-field {
+      height: 30px;
+      width: 100%;
+      padding: 0 10px 0 30px;
+    }
+
+    &__input-icon {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+    }
+  }
+
+  &__circle {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &:checked {
+      background: currentColor;
+    }
+  }
+  &__task-status {
+    display: inline-block;
+  }
+  &__task {
+    display: inline-flex;
+
+    &.complete {
+      text-decoration: line-through;
+    }
+  }
+
+  &__summary {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+
+    &-item {
+      display: flex;
+      flex-direction: column;
+
+      &-value {
+        font-size: 16px;
+      }
+
+      &-unit {
+        font-size: 12px;
+      }
+    }
+  }
+
+  &__task-name {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 16px;
+  }
+
+  &__task-stats {
+    font-size: 14px;
+    color: gray;
+  }
+}
+
+li.todo {
+  &__task-row {
+    display: flex ;
+    padding-left: 15px;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid lightgray;
+    }
+  }
+}

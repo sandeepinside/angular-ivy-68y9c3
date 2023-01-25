@@ -1,0 +1,67 @@
+<div class="todo">
+  <div class="todo__summary">
+    <p class="todo__summary-item">
+      <span class="todo__summary-value"> {{ totalEstimated }} </span>
+      <span class="todo__summary-unit"> Estimated Time </span>
+    </p>
+    <p class="todo__summary-item">
+      <span class="todo__summary-value"> {{ totalTasksRemainingOnDate }} </span>
+      <span class="todo__summary-unit"> Task To be completed </span>
+    </p>
+
+    <p class="todo__summary-item">
+      <span class="todo__summary-value">
+        {{ elapsedTime | number: '1.2' }}
+      </span>
+      <span class="todo__summary-unit"> Elapsed Time </span>
+    </p>
+
+    <p class="todo__summary-item">
+      <span class="todo__summary-value"> {{ completedTasks }} </span>
+      <span class="todo__summary-unit"> Completed Tasks</span>
+    </p>
+  </div>
+  <div class="todo__input-container">
+    <img src="plus-icon.png" class="todo__input-icon" />
+    <input
+      [(ngModel)]="newItemName"
+      type="text"
+      class="todo__input-field"
+      placeholder="Add a task"
+    />
+  </div>
+
+  <button (click)="addItem()">Add item</button>
+</div>
+<ul class="todo__task-list">
+  <li *ngFor="let item of items" class="todo__task-row">
+    <div class="todo__task-status">
+      <input
+        type="checkbox"
+        (click)="completeItem(item)"
+        [checked]="item.completedCount > 0"
+        class="todo__circle"
+      />
+    </div>
+
+    <div [ngClass]="{ complete: item.completedCount > 0 }" class="todo__task">
+      <div class="todo__task-details">
+        <p class="todo__task-name">{{ item.name }}</p>
+        <div class="todo__task-stats">
+          <span>{{ item.duration }} hours </span>
+          <span>{{ item.completedCount }} / {{ item.totalDays }}</span>
+          <span *ngIf="item.totalDays && item.missedDays > 0">
+            Missed {{ item.missedDays }} days
+          </span>
+        </div>
+      </div>
+
+      <button *ngIf="!item.startTime" (click)="startTimer(item)">
+        Start Timer
+      </button>
+      <button *ngIf="item.startTime" (click)="stopTimer(item)">
+        Stop Timer
+      </button>
+    </div>
+  </li>
+</ul>
